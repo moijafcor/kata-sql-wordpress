@@ -1,5 +1,5 @@
 /**
-Hoodie with Pocket
+Hoodie with Pocket ID 34
 */
 Use `kata-woocommerce`;
 SELECT p.ID, p.post_title, p.post_content, pm.meta_key, pm.meta_value
