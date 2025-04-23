@@ -4,7 +4,8 @@ WooCommerce stores customer data in wp_users and wp_usermeta.
 Use `kata-woocommerce`;
 
 /**
-WooCommerce official demo data does not include Customers or Orders
+WooCommerce official demo data does not include Customers or Orders.
+Data created manually.
 
 @see https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/sample-data/sample_products.csv
 */
