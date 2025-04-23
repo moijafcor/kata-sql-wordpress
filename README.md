@@ -1,4 +1,4 @@
-# Code Katas
+# SG - Code Review - Test #2 - MySQL
 
 ## SQL Wordpress + WooCommerce
 
