@@ -11,10 +11,22 @@ this can be generalized from the queries about product prices, etc.
 
 @see https://woocommerce.com/document/installed-taxonomies-post-types/#wordpress-core-tables
 */
-SELECT SUM(CAST(pm.meta_value AS DECIMAL(10,2))) AS total_revenue
-FROM wp_posts o
-JOIN wp_postmeta pm ON o.ID = pm.post_id
-WHERE o.post_type = 'shop_order'
-  AND o.post_status IN ('wc-completed', 'wc-processing')
-  AND o.post_author = 5
-  AND pm.meta_key = '_order_total';
+/**
+Customer ID 2
+*/
+SELECT 
+    SUM(total_amount) AS total_revenue
+FROM wp_wc_orders
+WHERE customer_id = 2
+  AND status IN ('wc-completed', 'wc-processing');
+  
+/**
+Customer Email: 
+*/
+SELECT 
+    SUM(o.total_amount) AS total_revenue
+FROM wp_wc_orders o
+JOIN wp_wc_order_addresses oa 
+    ON oa.order_id = o.id AND oa.address_type = 'billing'
+WHERE oa.email = 'moijafcor+wctest_1@gmail.com'
+  AND o.status IN ('wc-completed', 'wc-processing');

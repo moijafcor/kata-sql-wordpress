@@ -11,13 +11,14 @@ this can be generalized from the queries about product prices, etc.
 
 @see https://woocommerce.com/document/installed-taxonomies-post-types/#wordpress-core-tables
 */
-SELECT u.ID, u.user_login, u.user_email, SUM(CAST(pm.meta_value AS DECIMAL(10,2))) AS total_spent
-FROM wp_users u
-JOIN wp_posts o ON u.ID = o.post_author
-JOIN wp_postmeta pm ON o.ID = pm.post_id
-WHERE o.post_type = 'shop_order'
-  AND o.post_status IN ('wc-completed', 'wc-processing')
-  AND pm.meta_key = '_order_total'
+SELECT 
+    u.ID AS user_id,
+    u.user_login,
+    u.user_email,
+    SUM(o.total_amount) AS total_spent
+FROM wp_wc_orders o
+JOIN wp_users u ON u.ID = o.customer_id
+WHERE o.status IN ('wc-completed', 'wc-processing')
 GROUP BY u.ID
 ORDER BY total_spent DESC
 LIMIT 1;

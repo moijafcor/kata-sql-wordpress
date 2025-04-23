@@ -10,6 +10,5 @@ WooCommerce official demo data does not include Customers or Orders
 */
 SELECT DISTINCT u.ID, u.user_login, u.user_email
 FROM wp_users u
-JOIN wp_posts o ON u.ID = o.post_author
-WHERE o.post_type = 'shop_order'
-  AND o.post_status IN ('wc-completed', 'wc-processing');
+JOIN wp_wc_orders o ON u.ID = o.customer_id
+WHERE o.status IN ('wc-completed', 'wc-processing');
